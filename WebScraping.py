@@ -97,20 +97,27 @@ def books_list():
   
 
     # ii)
-    # category_rating_filter=[]
-    # filter_category_rating= df.loc[(df["genre"]== "Mystery" | "Nonfiction") & (df["rating"]==3)]
-    # category_rating_filter.append(filter_category_rating)
+    filter_list1=[]
+    filter_category= df[(df["rating"]==3) & (df['genre'].isin(['Mystery', 'Nonfiction']))]
+    filter_list1.append(filter_category)
+    # print(len(filter_category))
     
-    # filter_category= df.loc[ (df['genre']=='Mystery')|(df['genre']=='Nonfiction') ]
-    # filter_category= df[df['genre'].isin(['Mystery', 'Nonfiction'] & (df["rating"]==3) )]
-    # category_rating_filter.append(filter_category)
-    # filter_rating= filter_category.[()]
+
+   #iii)
+    filter_list2=[]
+    filter_category2= df[(df["rating"]< 4) & (df['genre'].isin(['Music', 'Science']))]
+    filter_list2.append(filter_category2)
+    # print(len(filter_category2))
+
+    # iv)
+    filter_list3=[]
+    filter_category3= df.loc[(df["genre"].str[0].isin(["A","P","M"])) & (df["genre"].str[-1]=="y")]
+    # filter_category3=df[(df['genre'].str.startswith(('A','P','M'))) & (df['genre'].str.endswith('Y'))]
+    filter_list3.append(filter_category3)
+    filter_category3.to_csv("filterChar.csv")
+    print(len(filter_list3))
+    print(filter_category3)
     
-    # print(len(category_rating_filter))
-    # print(filter_category)
-
-
-
 
 books_list()
 
